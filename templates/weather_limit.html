@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="/static/loginstyle.css" type="text/css">
+{% block body %}
+{% if not session['logged_in'] %}
+<p>You're not logged in</p>
+{% else %}
+
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Weather</h1>
+			</div>
+ 
+			<div class="login-form">
+				<div class="control-group">
+				Temperature {{ temperature }}
+			</div>
+			<div class="control-group">
+				Humidity {{ humidity }}
+			</div>
+			</div>
+		</div>
+	</div>
+ 
+{% endif %}
+{% endblock %}

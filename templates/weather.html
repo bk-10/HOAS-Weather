@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="/static/loginstyle.css" type="text/css">
+<link rel="icon" type="image/x-icon" href="{{ url_for('static',
+filename='favicon.ico') }}" />
+<head>
+	<title> HOAS Weather </title>
+</head>
+{% block body %}
+{% if not session['logged_in'] %}
+<p>You're not logged in</p>
+{% else %}
+ 
+ 
+<form action="/weather" method="POST">
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Weather</h1>
+			</div>
+ 
+			<div class="login-form">
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="Temperature in Celsius" name="temperature" required>
+				<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+ 
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="Humidity % value" name="humidity" required>
+				<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+ 
+                <input type="submit" value="Set" class="btn btn-primary btn-large btn-block" >
+			    <br>
+			</div>
+		</div>
+	</div>
+</form>
+
+<form action="/cweather" method="POST">
+<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Current Weather</h1>
+			</div>
+ 
+			<div class="login-form">
+				<div class="control-group">
+				Temperature {{ c_temperature }}
+			</div>
+			<div class="control-group">
+				Humidity {{ c_humidity }}
+			</div>
+			<input type="submit" value="Refresh" class="btn btn-primary btn-large btn-block" >
+			    <br>
+			</div>
+		</div>
+	</div>
+</form>
+
+<form action="/logout" method="POST">
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Weather</h1>
+			</div>
+ 
+			<div class="login-form">
+				<div class="control-group">
+				Temperature {{ temperature }}
+			</div>
+			<div class="control-group">
+				Humidity {{ humidity }}
+			</div>
+			<input type="submit" value="Logout" class="btn btn-primary btn-large btn-block" >
+			<br>
+			</div>
+</div>
+</div>
+<br>			<p align="center"><iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/460428/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=spline&yaxismax=1&yaxismin=0"></iframe></p>
+			<br>
+			<p align="center"><iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/460428/charts/2?bgcolor=%23ffffff&color=%230000ff&dynamic=true&results=60&type=spline&yaxismax=1&yaxismin=0"></iframe></p>
+</form>
+ 
+{% endif %}
+{% endblock %}
